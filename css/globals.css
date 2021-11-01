@@ -1,0 +1,13 @@
+body{
+color: black;
+}
+.container{
+  margin: 0 auto;
+  max-width: 1219px;
+}
+a{
+  text-decoration: none;
+}
+li{
+  display: block;
+}
