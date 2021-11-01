@@ -1,0 +1,26 @@
+.bottom{
+  background: #F8F8F8;
+}
+.bottom_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+}
+.rights{
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 28px;
+  color: #848484;
+  font-family: "Mulish","Arial", sans-serif;
+}
+.social-media{
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 40px;
+}
+.social-media__image{
+  padding-right: 20px;
+}

@@ -1,0 +1,47 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__nav ul{
+  display:flex;
+}
+.header__nav{
+  font-family: "Inter","Arial", sans-serif;
+  font-size: 16px;
+  line-height: 19px;
+}
+.header__nav__item{
+  margin-right: 34px;
+  color: #B8BECD;
+}
+.header__nav__item__home{
+  margin-right: 35px;
+  font-weight: 500;
+  color: #202336;
+}
+.header__buttons{
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 60px;
+}
+.header__login{
+  margin-right: 18px;
+  color: #FB8F1D;
+  width: 132px;
+  height: 44px;
+
+  border: 1px solid #FB8F1D;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background: #FFFFFF;
+}
+.header__register{
+  width: 132px;
+  height: 44px;
+
+  background: #FB8F1D;
+  border-radius: 8px;
+  color: #FFFFFF;
+  border: 0;
+}
