@@ -1,9 +1,24 @@
 body{
 color: black;
 }
+@media screen and (max-width: 768px){
+  body{
+    text-align: center;
+  }
+}
 .container{
   margin: 0 auto;
   max-width: 1219px;
+}
+/*@media screen and (max-width: 1024px){*/
+/*  .container{*/
+/*    padding: 0 20px;*/
+/*  }*/
+/*}*/
+@media screen and (max-width: 411px){
+  .container{
+    padding: 0;
+  }
 }
 a{
   text-decoration: none;

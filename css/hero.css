@@ -1,12 +1,23 @@
 .hero{
-  background: url("../img/Thousand-03.png") no-repeat center right +250px;
+  /*background: url("../img/Thousand-03.png") no-repeat center right +250px;*/
 }
 .hero__inner{
+  display: flex;
+}
+.hero__text{
   padding-top: 301px;
   padding-bottom: 209px;
+  padding-left: 30px;
+}
+.hero__image{
+  width: 599px;
+  height: 542px;
+  padding-top: 150px;
+  padding-left: 80px;
+  animation: floating 2s linear infinite;
 }
 .hero__title{
-  width: 350px;
+  width: 80%;
   font-weight: bold;
   font-size: 36px;
   font-family: "Playfair Display","Arial", sans-serif;
@@ -14,7 +25,7 @@
 }
 .hero__paragraph{
   padding-top: 20px;
-  width: 450px;
+  width: 80%;
   font-weight: 300;
   font-size: 17px;
   color: #7D7987;
@@ -34,10 +45,30 @@
   border-radius: 8px;
   border: 0;
 }
-.hero__image{
-  display: flex;
-  position: absolute;
-}
 .container__hero{
   align-items: center;
 }
+@media screen and (max-width: 768px){
+  .hero__image{
+    display: none;
+  }
+  .hero__paragraph{
+    padding-bottom: 20px;
+    align-items: center;
+    width: 100%;
+  }
+  .hero__text{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 0;
+  }
+  .hero__inner{
+    align-items: center;
+    justify-content: center;
+  }
+  .hero__title{
+    justify-content: center;
+    width:100%;
+  }
+}
+

@@ -19,7 +19,10 @@
 <section class="hero">
   <div class="container">
     <header class='header'>
-      <nav class="header__nav">
+      <div class="header__menu" onclick="toggleMenu()">
+        <img src="img/hamburger_menu.png" alt="hamburger menu">
+      </div>
+      <nav id="nav__links" class="header__nav">
         <ul>
           <li><a href="" class="header__nav__item__home">Home</a></li>
           <li><a href="" class="header__nav__item">Destinations</a></li>
@@ -38,10 +41,13 @@
     </header>
     <div class="container__hero">
       <div class="hero__inner">
-        <h1 class="hero__title">Guides by Thousand Sunny</h1>
-        <p class="hero__paragraph">Packed with tips and advice from our on-the-ground experts, our city guides app
-          (iOS and Android) is the ultimate resource before and during a trip.</p>
-        <button class="download__button">Download</button>
+        <div class="hero__text">
+          <h1 class="hero__title">Guides by Thousand Sunny</h1>
+          <p class="hero__paragraph">Packed with tips and advice from our on-the-ground experts, our city guides app
+            (iOS and Android) is the ultimate resource before and during a trip.</p>
+          <button class="download__button">Download</button>
+        </div>
+        <img src="img/Thousand-03.png" alt="just graphic" class="hero__image">
       </div>
     </div>
   </div>
@@ -105,7 +111,7 @@
         <h2 class="stories__small-titles">The many benefits of
           taking a healing holiday</h2>
         <p class="story-text">‘Helaing holidays’ are on the rise
-          tohelp maximise your health and happines...</p>
+          to help maximise your health and happines...</p>
         <p class="read-more">Read more</p>
       </div>
       <div class="story-with-image">
@@ -137,9 +143,9 @@
     </div>
   </div>
 </section>
-<section class="bottom">
+<footer class="footer">
   <div class="container">
-    <div class="bottom_header">
+    <div class="footer_header">
       <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="20.5" cy="20.5" r="20.5" fill="#1ABE84"/>
         <circle cx="20.5" cy="20.5" r="9" fill="#FB8F1D" stroke="white" stroke-width="3"/>
@@ -159,6 +165,8 @@
       </div>
     </div>
   </div>
-</section>
+</footer>
+
+<script src="js/main.js"></script>
 </body>
 </html>

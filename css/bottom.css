@@ -1,7 +1,7 @@
-.bottom{
+.footer{
   background: #F8F8F8;
 }
-.bottom_header{
+.footer_header{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,4 +23,9 @@
 }
 .social-media__image{
   padding-right: 20px;
+}
+@media screen and (max-width: 411px){
+  .rights{
+    font-size: 14px;
+  }
 }

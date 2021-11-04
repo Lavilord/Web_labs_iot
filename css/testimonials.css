@@ -1,5 +1,5 @@
 .testimonials{
-  padding-left: 100px;
+  padding-left: 80px;
   background: #F8F8F8;
 }
 .testimonials__title{
@@ -18,7 +18,7 @@
   font-size: 24px;
   line-height: 36px;
   font-family: "Mulish","Arial", sans-serif;
-  width: 450px;
+  width: 80%;
 }
 .testimonials__content{
   display: flex;
@@ -41,4 +41,30 @@
   line-height: 48px;
   font-family: "Inter","Arial", sans-serif;
   padding-bottom: 179px;
+}
+@media screen and (max-width: 1024px){
+  .testimonials__image{
+    padding-right: 70px;
+  }
+}
+@media screen and (max-width: 768px){
+  .testimonials__content{
+    flex-direction: column;
+  }
+  .testimonial-paragraph{
+    width: 100%;
+  }
+  .testimonials{
+    padding-left: 0;
+  }
+  .stars{
+    padding-top: 70px;
+  }
+  .testimonials__image{
+    padding-top: 70px;
+    padding-right: 0;
+  }
+  .occupation{
+    padding-bottom: 0;
+  }
 }

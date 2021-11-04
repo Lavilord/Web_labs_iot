@@ -12,7 +12,6 @@
 .stories__title{
   font-weight: bold;
   font-size: 36px;
-  line-height: 50px;
   font-family: "Playfair Display","Arial", sans-serif;
 }
 .stories__view-all-text{
@@ -28,6 +27,7 @@
   object-fit: cover;
   height: 270px;
   object-position: top;
+  border-radius: 20px;
 }
 .stories-with-images{
   padding-top: 26px;
@@ -56,4 +56,24 @@
   color: #FB8F1D;
   font-family: "Inter","Arial", sans-serif;
   padding-bottom: 164px;
+}
+@media screen and (max-width: 1024px){
+  .stories-with-images{
+    flex-direction: column;
+  }
+  .read-more{
+    padding-bottom: 70px;
+  }
+}
+@media screen and (max-width: 411px){
+  .stories__view-all{
+    display: none;
+  }
+  .stories__header{
+    justify-content: center;
+    padding-top: 100px;
+  }
+  .read-more{
+    padding-bottom: 50px;
+  }
 }
