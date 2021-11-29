@@ -1,3 +1,8 @@
+export const EDIT_BUTTON_PREFIX = 'edit-button-';
+
+const titleInput = document.getElementById("title_input");
+const priceInput = document.getElementById("price_input");
+const weightInput = document.getElementById("weight_in_grams_input");
 const itemsContainer = document.getElementById("items_container");
 
 const itemTemplate = ({ id, title, price,weight_in_grams}) => `
@@ -9,20 +14,42 @@ const itemTemplate = ({ id, title, price,weight_in_grams}) => `
     <h5>${title}</h5>
     <p>Price: ${price} dolars.</p>
     <p>Weight: ${weight_in_grams} grams.</p>
+    <button id="${EDIT_BUTTON_PREFIX}${id}" type="button" class="default_button">
+      Edit
+    </button>
   </div>
 </li>`;
 
-export const addItemToPage = ({ id, title, price,weight_in_grams }) => {
+export const addItemToPage = ({ id, title, price,weight_in_grams }, onEditItem) => {
     itemsContainer.insertAdjacentHTML(
         "afterbegin",
         itemTemplate({ id, title, price,weight_in_grams})
     );
+
+    const editButton = document.getElementById(`${EDIT_BUTTON_PREFIX}${id}`);
+
+    editButton.addEventListener("click", onEditItem);
 };
 
-export const renderItemsList = (items) => {
+export const renderItemsList = (items, onEditItem) => {
     itemsContainer.innerHTML = "";
 
     for (const item of items) {
-        addItemToPage(item);
+        addItemToPage(item, onEditItem);
     }
+};
+
+export const clearInputs = () => {
+    titleInput.value = "";
+    priceInput.value = "";
+    weightInput.value = "";
+};
+
+export const getInputValues = () => {
+    return {
+        title: titleInput.value,
+        price: priceInput.value,
+        weight: weightInput.value,
+    };
+
 };

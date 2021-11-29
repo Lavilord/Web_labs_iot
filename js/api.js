@@ -13,4 +13,14 @@ const ANIMALS =[
 ]
 export const getAllAnimals = () => {
     return ANIMALS;
-};
+}
+export const postAnimal = (body) => {
+    ANIMALS.push(body);
+}
+
+export const updateAnimal = (id, body) => {
+    let idx = ANIMALS.findIndex(x => x.id === id);
+    ANIMALS[idx].title = body.title;
+    ANIMALS[idx].price = body.price;
+    ANIMALS[idx].weight_in_grams = body.weight_in_grams;
+}

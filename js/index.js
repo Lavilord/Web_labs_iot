@@ -1,6 +1,13 @@
-import { renderItemsList } from "./dom-util.js"
-import { getAllAnimals } from "./api.js";
+import {
+    getInputValues,
+    renderItemsList,
+    EDIT_BUTTON_PREFIX,
+    clearInputs
+} from "./dom-util.js"
+import { getAllAnimals, postAnimal, updateAnimal } from "./api.js";
 
+const submitButton = document.getElementById("submit_button");
+const formFields = document.getElementsByClassName("form-control");
 const searchButton = document.getElementById("search_button");
 const clearSearchButton = document.getElementById("clear_search_button");
 const searchInput = document.getElementById("search_input");
@@ -9,23 +16,60 @@ const countButton = document.getElementById("count_button");
 
 let animals = [];
 
+const onEditItem = (e) => {
+    if (!validateInput()) {
+        return;
+    };
+    const itemId = e.target.id.replace(EDIT_BUTTON_PREFIX, "");
+
+    updateAnimal(itemId, getInputValues());
+    clearInputs();
+
+    refetchAllAnimals();
+};
+const validateInput = () => {
+    if (Array.from(formFields).filter(x => x.value.trim() == "").length !== 0) {
+        alert("Please fill out required fields");
+        return false;
+    }
+}
+
+
 export const refetchAllAnimals = () => {
     const AllAnimals = getAllAnimals();
 
     animals = AllAnimals.sort((a,b) =>b.title.localeCompare(a.title));
-
-    renderItemsList(animals);
+    renderItemsList(animals, onEditItem);
 };
+submitButton.addEventListener("click", (event) => {
+    if (!validateInput()) {
+        return;
+    };
+
+    event.preventDefault();
+
+    const { title, price, weight_in_grams } = getInputValues();
+
+    clearInputs();
+
+    postAnimal({
+        title,
+        price,
+        weight_in_grams
+    });
+
+    refetchAllAnimals();
+});
 
 searchButton.addEventListener("click", () => {
     const foundAnimals = animals.filter(
         (animal) => animal.title.search(searchInput.value) !== -1);
 
-    renderItemsList(foundAnimals);
+    renderItemsList(foundAnimals, onEditItem);
 });
 
 clearSearchButton.addEventListener("click", () => {
-    renderItemsList(animals);
+    renderItemsList(animals, onEditItem);
 
     searchInput.value = "";
 });
@@ -35,7 +79,7 @@ sortCheckbox.addEventListener("change", function (e) {
         const sortedAnimals = animals.sort(
             (a, b) => parseFloat(a.price) - parseFloat(b.price));
 
-        renderItemsList(sortedAnimals);
+        renderItemsList(sortedAnimals, onEditItem);
     }
     else {
         refetchAllAnimals();
