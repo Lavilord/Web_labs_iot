@@ -12,7 +12,7 @@ const itemTemplate = ({ id, title, price,weight_in_grams}) => `
   </div>
 </li>`;
 
-export const addItemToPage = ({ _id: id, title, price,weight_in_grams }) => {
+export const addItemToPage = ({ id, title, price,weight_in_grams }) => {
     itemsContainer.insertAdjacentHTML(
         "afterbegin",
         itemTemplate({ id, title, price,weight_in_grams})
