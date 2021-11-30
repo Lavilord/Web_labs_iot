@@ -2,9 +2,10 @@ import {
     getInputValues,
     renderItemsList,
     EDIT_BUTTON_PREFIX,
+    DELETE_BUTTON_PREFIX,
     clearInputs
 } from "./dom-util.js"
-import { getAllAnimals, postAnimal, updateAnimal } from "./api.js";
+import { deleteAnimal,getAllAnimals, postAnimal, updateAnimal } from "./api.js";
 
 const submitButton = document.getElementById("submit_button");
 const formFields = document.getElementsByClassName("form-control");
@@ -16,60 +17,67 @@ const countButton = document.getElementById("count_button");
 
 let animals = [];
 
-const onEditItem = (e) => {
+const onEditItem = async(e) => {
     if (!validateInput()) {
         return;
     };
     const itemId = e.target.id.replace(EDIT_BUTTON_PREFIX, "");
 
-    updateAnimal(itemId, getInputValues());
+    await updateAnimal(itemId, getInputValues());
     clearInputs();
 
-    refetchAllAnimals();
+    await refetchAllAnimals();
 };
+const onDeleteItem = async (e) => {
+    const itemId = e.target.id.replace(DELETE_BUTTON_PREFIX, "");
+
+    await deleteAnimal(itemId);
+
+    await refetchAllAnimals();
+}
 const validateInput = () => {
-    if (Array.from(formFields).filter(x => x.value.trim() == "").length !== 0) {
+    if (Array.from(formFields).filter(x => x.value.trim() === "").length !== 0) {
         alert("Please fill out required fields");
         return false;
     }
+    return true;
 }
 
 
-export const refetchAllAnimals = () => {
-    const AllAnimals = getAllAnimals();
+export const refetchAllAnimals = async () => {
+    const AllAnimals = await getAllAnimals();
 
-    animals = AllAnimals.sort((a,b) =>b.title.localeCompare(a.title));
-    renderItemsList(animals, onEditItem);
+    animals = AllAnimals.animals.sort((a,b) =>b.title.localeCompare(a.title));
+    renderItemsList(animals, onEditItem, onDeleteItem);
 };
-submitButton.addEventListener("click", (event) => {
+submitButton.addEventListener("click", async (event) => {
+    event.preventDefault();
     if (!validateInput()) {
         return;
-    };
-
-    event.preventDefault();
+    }
 
     const { title, price, weight_in_grams } = getInputValues();
 
     clearInputs();
 
-    postAnimal({
+    await postAnimal({
         title,
         price,
         weight_in_grams
     });
 
-    refetchAllAnimals();
+    await refetchAllAnimals();
 });
 
 searchButton.addEventListener("click", () => {
     const foundAnimals = animals.filter(
         (animal) => animal.title.search(searchInput.value) !== -1);
 
-    renderItemsList(foundAnimals, onEditItem);
+    renderItemsList(foundAnimals, onEditItem, onDeleteItem);
 });
 
 clearSearchButton.addEventListener("click", () => {
-    renderItemsList(animals, onEditItem);
+    renderItemsList(animals, onEditItem, onDeleteItem);
 
     searchInput.value = "";
 });
@@ -79,10 +87,10 @@ sortCheckbox.addEventListener("change", function (e) {
         const sortedAnimals = animals.sort(
             (a, b) => parseFloat(a.price) - parseFloat(b.price));
 
-        renderItemsList(sortedAnimals, onEditItem);
+        renderItemsList(sortedAnimals, onEditItem, onDeleteItem);
     }
     else {
-        refetchAllAnimals();
+        refetchAllAnimals()
     }
 });
 
